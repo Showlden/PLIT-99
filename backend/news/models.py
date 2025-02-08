@@ -1,6 +1,5 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
-from rest_framework.exceptions import ValidationError
 
 NEWS_TYPES = [
     ("Новость", "Новость"),
@@ -13,14 +12,6 @@ class News(models.Model):
     description = models.TextField(max_length=500, blank=False, null=False, verbose_name="Описание")
     date = models.DateField(verbose_name="Дата", null=False)
     type = models.CharField(choices=NEWS_TYPES, default="Новость", blank=False, null=False, max_length=7, verbose_name="Тип новости")
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-        if hasattr(self, 'images'):
-            image_count = self.images.count()
-            if image_count < 3 or image_count > 6:
-                raise ValidationError("Количество изображений должно быть от 3 до 6.")
 
     class Meta:
         verbose_name = "Новость"

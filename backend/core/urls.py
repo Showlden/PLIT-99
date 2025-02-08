@@ -9,9 +9,6 @@ schema_view = get_swagger_view(
         title="API",
         default_version='v1',
         description="API documentation",
-        terms_of_service="https://www.google.com/policies/terms/",
-        contact=openapi.Contact(email="contact@yourdomain.local"),
-        license=openapi.License(name="BSD License"),
     ),
     public=True,
 
@@ -21,5 +18,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', schema_view.with_ui("swagger", cache_timeout=0), name="swagger"),
 
-    path("staff/", include("staff.urls"))
+    path("api/", include([
+        path("staff/", include("staff.urls")),  # Correct way to include
+        path("news/", include("news.urls")),  # Correct way to include
+        path("", include("study.urls")),  # Correct way to include
+    ])),
 ]
