@@ -9,7 +9,7 @@ class NewsSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = News
-        fields = "id title description date type imgs".split()
+        fields = "id title description date type is_pinned imgs".split()
 
     def get_imgs(self, obj):
         related_images = NewsImage.objects.filter(news=obj)

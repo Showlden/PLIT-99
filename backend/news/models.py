@@ -12,6 +12,7 @@ class News(models.Model):
     description = models.TextField(max_length=500, blank=False, null=False, verbose_name="Описание")
     date = models.DateField(verbose_name="Дата", null=False)
     type = models.CharField(choices=NEWS_TYPES, default="Новость", blank=False, null=False, max_length=7, verbose_name="Тип новости")
+    is_pinned = models.BooleanField(default=False, verbose_name="Закрепить")
 
     class Meta:
         verbose_name = "Новость"
@@ -19,6 +20,7 @@ class News(models.Model):
 
     def __str__(self):
         return self.title
+
 
 class NewsImage(models.Model):
     news = models.ForeignKey('News', related_name='images', on_delete=models.CASCADE)
