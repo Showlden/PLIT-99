@@ -1,10 +1,10 @@
 from django import forms
-from .models import Specialization, Course
+from .models import BaseStudyModel
 
 
 class StudyForm(forms.ModelForm):
     class Meta:
-        model = Specialization
+        model = BaseStudyModel
         fields = "__all__"
         labels = {
             "preview_img": "Предварительное изображение",

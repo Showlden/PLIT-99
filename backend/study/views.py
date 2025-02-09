@@ -3,7 +3,7 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 
 from .models import Specialization, Course
-from .permissions import ReadOnly
+from common.permissions import ReadOnly
 from .serializers import SpecializationSerializer, CourseSerializer
 
 class SpecializationListView(ListAPIView):

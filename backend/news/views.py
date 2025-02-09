@@ -3,8 +3,9 @@ from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 
 from .models import News
-from .permissions import ReadOnly
+from common.permissions import ReadOnly
 from .serializers import NewsSerializer
+
 
 class NewsListView(ListAPIView):
     queryset = News.objects.all()
