@@ -1,4 +1,3 @@
-from datetime import timedelta
 from pathlib import Path
 import os
 
@@ -25,9 +24,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'drf_spectacular',
     'django_filters',
     'corsheaders',
-    'drf_yasg',
     'cloudinary',
     'cloudinary_storage',
 
@@ -105,9 +104,20 @@ REST_FRAMEWORK = {
         'rest_framework.renderers.JSONRenderer',
     ],
 
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
     'DATETIME_FORMAT': "%Y-%m-%dT%H:%M:%S.%fZ",
     'DEFAULT_TIME_ZONE': 'Asia/Bishkek',
 }
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'PLIT-99 API',
+    'DESCRIPTION': 'SWAGGER FOR ENDPOINTS',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'ENUM_SUFFIX': '',
+    'POSTPROCESSING_HOOKS': [],
+}
+
 
 LANGUAGE_CODE = 'ru'
 

@@ -1,0 +1,388 @@
+openapi: 3.0.3
+info:
+  title: PLIT-99 API
+  version: 1.0.0
+  description: SWAGGER FOR ENDPOINTS
+paths:
+  /api/course/:
+    get:
+      operationId: api_course_list
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Course'
+          description: ''
+  /api/course/{id}/:
+    get:
+      operationId: api_course_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Course'
+          description: ''
+  /api/news/:
+    get:
+      operationId: api_news_list
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/News'
+          description: ''
+  /api/news/{id}/:
+    get:
+      operationId: api_news_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/News'
+          description: ''
+  /api/specialization/:
+    get:
+      operationId: api_specialization_list
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Specialization'
+          description: ''
+  /api/specialization/{id}/:
+    get:
+      operationId: api_specialization_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Specialization'
+          description: ''
+  /api/staff/:
+    get:
+      operationId: api_staff_list
+      parameters:
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Staff'
+          description: ''
+  /api/staff/{id}/:
+    get:
+      operationId: api_staff_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - api
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Staff'
+          description: ''
+components:
+  schemas:
+    Course:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          title: Название
+          maxLength: 128
+        description:
+          type: string
+          title: Описание
+          maxLength: 500
+        term:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          title: Срок обучения
+          description: Срок обучения в месяцах
+        price:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          title: Цена
+        preview_img:
+          type: string
+          format: uri
+          readOnly: true
+        banner_img:
+          type: string
+          format: uri
+          readOnly: true
+      required:
+      - banner_img
+      - description
+      - id
+      - preview_img
+      - price
+      - title
+    News:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          title: Заголовок
+          maxLength: 80
+        description:
+          type: string
+          title: Описание
+          maxLength: 500
+        date:
+          type: string
+          format: date
+          title: Дата
+        type:
+          enum:
+          - Новость
+          - Событие
+          - Анонс
+          type: string
+          description: |-
+            * `Новость` - Новость
+            * `Событие` - Событие
+            * `Анонс` - Анонс
+          x-spec-enum-id: 8b381e5d27fc266f
+        is_pinned:
+          type: boolean
+          title: Закрепить
+        imgs:
+          type: string
+          readOnly: true
+      required:
+      - date
+      - description
+      - id
+      - imgs
+      - title
+      - type
+    Specialization:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        title:
+          type: string
+          title: Название
+          maxLength: 128
+        description:
+          type: string
+          title: Описание
+          maxLength: 500
+        term:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          title: Срок обучения
+          description: Срок обучения в годах
+        contract:
+          type: integer
+          maximum: 9223372036854775807
+          minimum: 0
+          format: int64
+          title: Обучение на контрактной основе
+        preview_img:
+          type: string
+          format: uri
+          readOnly: true
+        banner_img:
+          type: string
+          format: uri
+          readOnly: true
+      required:
+      - banner_img
+      - description
+      - id
+      - preview_img
+      - title
+    Staff:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        name:
+          type: string
+          title: Имя
+          maxLength: 54
+        position:
+          enum:
+          - Мастер П/О
+          - Преподователь
+          - Учебная часть
+          - Директор
+          - Заместитель директора
+          type: string
+          description: |-
+            * `Мастер П/О` - Мастер П/О
+            * `Преподователь` - Преподователь
+            * `Учебная часть` - Учебная часть
+            * `Директор` - Директор
+            * `Заместитель директора` - Заместитель директора
+          x-spec-enum-id: b8bcb615460e5d29
+        img:
+          type: string
+          readOnly: true
+        phone_number:
+          type: string
+          title: Номер телефона
+          maxLength: 13
+        email:
+          type: string
+          format: email
+          maxLength: 255
+      required:
+      - email
+      - id
+      - img
+      - name
+      - phone_number
+      - position
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid

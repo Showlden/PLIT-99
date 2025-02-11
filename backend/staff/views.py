@@ -1,4 +1,5 @@
 from django_filters.rest_framework import DjangoFilterBackend
+from drf_spectacular.openapi import AutoSchema
 from rest_framework.filters import SearchFilter, OrderingFilter
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 
@@ -9,6 +10,7 @@ from .serializers import StaffSerializer
 class StaffListView(ListAPIView):
     queryset = Staff.objects.all()
     serializer_class = StaffSerializer
+    schema = AutoSchema()
 
     permission_classes = [ReadOnly]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
@@ -21,4 +23,6 @@ class StaffListView(ListAPIView):
 class StaffDetailView(RetrieveAPIView):
     queryset = Staff.objects.all()
     serializer_class = StaffSerializer
+    schema = AutoSchema()
+
     permission_classes = [ReadOnly]
