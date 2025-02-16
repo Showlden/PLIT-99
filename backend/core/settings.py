@@ -1,6 +1,8 @@
 from pathlib import Path
 import os
 
+from django.utils.translation import gettext_lazy as _
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -16,6 +18,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -133,6 +136,51 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+JET_DEFAULT_THEME = 'green'
+JET_SIDE_MENU_COMPACT = True
+JET_CHANGE_FORM_SIBLING_LINKS = False
+
+JET_THEMES = [
+    {
+        'theme': 'default', # theme folder name
+        'color': '#47bac1', # color of the theme's button in user menu
+        'title': 'Default' # theme title
+    },
+    {
+        'theme': 'green',
+        'color': '#44b78b',
+        'title': 'Green'
+    },
+    {
+        'theme': 'light-green',
+        'color': '#2faa60',
+        'title': 'Light Green'
+    },
+    {
+        'theme': 'light-violet',
+        'color': '#a464c4',
+        'title': 'Light Violet'
+    },
+    {
+        'theme': 'light-blue',
+        'color': '#5EADDE',
+        'title': 'Light Blue'
+    },
+    {
+        'theme': 'light-gray',
+        'color': '#222',
+        'title': 'Light Gray'
+    }
+]
+
+JET_SIDE_MENU_ITEMS = [
+    {'label': _('Элементы'), 'app_label': 'core', 'items': [
+        {'name': 'News', 'label': _('Новости'), 'url': 'http://127.0.0.1:8000/admin/news/news/', 'url_blank': False},
+        {'name': 'Staff', 'label': _('Сотрудники'), 'url': 'http://127.0.0.1:8000/admin/staff/staff/', 'url_blank': False},
+        {'name': 'Specializations', 'label': _('Направления'), 'url': 'http://127.0.0.1:8000/admin/study/specialization/', 'url_blank': False},
+        {'name': 'Courses', 'label': _('Курсы'), 'url': 'http://127.0.0.1:8000/admin/study/course/', 'url_blank': False},
+    ]},
+]
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 

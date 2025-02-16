@@ -1,10 +1,12 @@
 from django.contrib import admin
+from jet.admin import CompactInline
 
 from .models import News, NewsImage
 
-class NewsImageInline(admin.TabularInline):
+class NewsImageInline(CompactInline):
     model = NewsImage
     extra = 5
+    show_change_link = True
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
