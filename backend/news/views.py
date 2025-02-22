@@ -15,7 +15,7 @@ class NewsListView(ListAPIView):
 
     permission_classes = [ReadOnly]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filter_fields = "id title date type ".split()
+    filterset_fields = "id title date type ".split()
     search_fields = "id title date type".split()
     ordering_fields = "id title date type ".split()
 

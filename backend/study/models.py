@@ -10,6 +10,9 @@ class BaseStudyModel(models.Model):
     class Meta:
         abstract = True
 
+    def __str__(self):
+        return self.title
+
 class Specialization(BaseStudyModel):
     term = models.PositiveIntegerField(default=2, help_text="Срок обучения в годах", verbose_name="Срок обучения")
     contract = models.PositiveIntegerField(default=50000, verbose_name="Обучение на контрактной основе")

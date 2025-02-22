@@ -1,5 +1,6 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
+from rest_framework.exceptions import ValidationError
 
 NEWS_TYPES = [
     ("Новость", "Новость"),

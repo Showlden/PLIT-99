@@ -14,7 +14,7 @@ class StaffListView(ListAPIView):
 
     permission_classes = [ReadOnly]
     filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
-    filter_fields = "id name position phone_number email".split()
+    filterset_fields = "id name position phone_number email".split()
     search_fields = "id name position email".split()
     ordering_fields = "id name position".split()
 
