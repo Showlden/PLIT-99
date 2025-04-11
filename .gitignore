@@ -1,5 +1,5 @@
-./backend/venv
-./backend/core/.env
-./backend/db.sqlite3
-__pycache__/
+/backend/venv
+/backend/core/.env
+/backend/db.sqlite3
+
 
